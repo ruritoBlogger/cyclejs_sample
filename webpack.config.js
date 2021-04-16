@@ -1,8 +1,8 @@
-import * as path from "path";
-import * as webpack from "webpack";
-import HtmlWebpackPlugin from "html-webpack-plugin";
+const path = require("path");
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-import { devBabelConfig } from "./babel.config";
+const devBabelConfig = require("./babel.config");
 
 const src = path.resolve(__dirname, "src");
 const pub = path.resolve(__dirname, "public");
@@ -56,5 +56,3 @@ module.exports = {
     }),
   ],
 };
-
-export default config;
