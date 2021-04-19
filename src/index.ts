@@ -1,7 +1,7 @@
 import { run } from "@cycle/run";
 import { div, label, input, hr, h1, makeDOMDriver } from "@cycle/dom";
 
-function main(sources) {
+const main = (sources) => {
   const input$ = sources.DOM.select(".field").events("input");
 
   const name$ = input$.map((ev) => ev.target.value).startWith("");
@@ -16,6 +16,6 @@ function main(sources) {
   );
 
   return { DOM: vdom$ };
-}
+};
 
 run(main, { DOM: makeDOMDriver("#app") });
