@@ -1,12 +1,26 @@
 import { run } from "@cycle/run";
-import { div, label, input, hr, h1, makeDOMDriver } from "@cycle/dom";
+import {
+  div,
+  label,
+  input,
+  hr,
+  h1,
+  makeDOMDriver,
+  VNode,
+  DOMSource,
+} from "@cycle/dom";
+import { Observable } from "xstream";
 
-const main = (sources) => {
-  const input$ = sources.DOM.select(".field").events("input");
+const main = (sources: { DOM: DOMSource }) => {
+  const input$: Observable<Event> = sources.DOM.select(".field").events(
+    "input"
+  );
 
-  const name$ = input$.map((ev) => ev.target.value).startWith("");
+  const name$: Observable<string> = input$
+    .map((ev) => ev.target.value)
+    .startWith("");
 
-  const vdom$ = name$.map((name) =>
+  const vdom$: Observable<VNode> = name$.map((name) =>
     div([
       label("Name:"),
       input(".field", { attrs: { type: "text" } }),
